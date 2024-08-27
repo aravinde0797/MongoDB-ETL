@@ -1,0 +1,11 @@
+db.accounts.updateMany({ 
+	products:	{$in: ["CurrencyService"]} 
+	},
+	[{ 
+		$set: {
+			"limit": {
+				$add: ["$limit", {$multiply:["$limit",0.05]} ]
+				}
+		} 
+	}]
+);
