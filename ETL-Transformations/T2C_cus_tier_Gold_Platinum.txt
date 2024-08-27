@@ -1,0 +1,16 @@
+db.customers.aggregate([
+    {
+        $project: {
+		"username":1,
+		"name":1,
+		"address":1,
+		"birthdate":1,
+		"email":1,
+		"accounts":1,	
+		"tier_and_details": { $arrayElemAt: [{ $objectToArray: "$tier_and_details" }, 0] }
+		}
+    }, {
+        $match: { 'tier_and_details.v.tier': { $in: ["Gold", "Platinum"] } }
+    },
+	{ $out : "customers_out" }
+])

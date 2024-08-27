@@ -1,0 +1,13 @@
+db.customers.find({}).forEach(function(doc) { 
+	var regexp = /^([A-Za-z][a-z]+)$/;
+	if (!(regexp.test(doc.name))) 
+	{
+        var str = doc.name.split(' ');
+		var fname = str[0];
+		var lname = str[1].slice(0, 1).toUpperCase();
+		var result = lname.concat(". ".concat(fname));
+		db.customers.updateOne({_id: doc._id}, {$set: {
+		name: result
+		}});
+	}
+});

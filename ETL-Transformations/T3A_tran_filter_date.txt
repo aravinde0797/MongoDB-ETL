@@ -1,0 +1,20 @@
+db.transactions.aggregate( [
+   {
+      $project: {
+	  "account_id": 1,
+	  "transaction_count": 1,
+         "transactions": {
+            $filter: {
+               input: "$transactions",
+               as: "tran",
+               cond: {$and:[ {$gte: [ "$$tran.date", new ISODate("2010-01-01T00:00:00.000Z") ]}, 
+					{$lt: [ "$$tran.date", new ISODate("2016-01-01T00:00:00.000Z") ]}
+			   ]}
+            }
+         }
+      },
+	  },{$out:"transactions_out"}] )
+
+db.transactions_out.find({}).forEach(function(doc) {
+    db.transactions_out.deleteMany({"transactions":{ $exists: true, $size: 0 }});
+  });

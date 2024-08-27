@@ -1,0 +1,8 @@
+db.transactions_out.find({}).forEach(function(doc) { 
+var cnt = doc.transactions.length;	
+for (let i = 0; i < cnt; i++) {
+let a = parseFloat(doc.transactions[i].price).toFixed(2);
+let b = parseFloat(doc.transactions[i].total).toFixed(2);
+db.transactions_out.updateOne({_id: doc._id}, {$set: {"transactions.$[].price": a}});
+db.transactions_out.updateOne({_id: doc._id}, {$set: {"transactions.$[].total": b}});
+}});

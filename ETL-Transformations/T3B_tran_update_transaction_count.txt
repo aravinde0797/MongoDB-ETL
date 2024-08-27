@@ -1,0 +1,8 @@
+db.transactions_out.updateMany(
+	{},
+	[{
+		$set: { 
+			transaction_count: { $size:"$transactions" }
+			}
+	}
+])
