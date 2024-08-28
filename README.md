@@ -3,7 +3,7 @@ This project explains how we can perform ETL transformations over NOSQL Database
 
 **Source:**  "sample_analytics".  To know more about the source please visit the page: https://www.mongodb.com/docs/atlas/sample-data/sample-analytics/
 
-**Tools:**   MongoDB Shell.
+**Tool:**   MongoDB Shell.
 
 **Business Logic:**
 
@@ -22,3 +22,5 @@ This project explains how we can perform ETL transformations over NOSQL Database
     a.	Transactions performed for the period from 2010 to 2015 should only be considered.
     b.	Correct the transaction_count field in each document after performing the above filter (filtering based on time period).
     c.	Limit the decimals of Price and Total fields to two places.
+
+To understand more please refer to the blog - https://medium.com/@aravinde0797/etl-transformations-in-mongodb-d96625033ca9
